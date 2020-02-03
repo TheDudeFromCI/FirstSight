@@ -22,10 +22,10 @@ namespace WraithavenGames.FirstSight
                 EditorGUILayout.LabelField("Jump Tuning", EditorStyles.boldLabel);
                 EditorGUI.indentLevel++;
 
-                controller.TEMP_JumpHeight = EditorGUILayout.FloatField("Jump Height",
-                    controller.TEMP_JumpHeight);
-                controller.TEMP_JumpTime = EditorGUILayout.FloatField("Time To Peak",
-                    controller.TEMP_JumpTime);
+                controller.TEMPJumpHeight = EditorGUILayout.FloatField("Jump Height",
+                    controller.TEMPJumpHeight);
+                controller.TEMPJumpTime = EditorGUILayout.FloatField("Time To Peak",
+                    controller.TEMPJumpTime);
 
                 Rect buttonRect = EditorGUILayout.GetControlRect();
                 buttonRect = EditorGUI.IndentedRect(buttonRect);
@@ -33,8 +33,8 @@ namespace WraithavenGames.FirstSight
 
                 if (GUI.Button(buttonRect, "Calculate Gravity and Velocity"))
                 {
-                    float h = controller.TEMP_JumpHeight;
-                    float t = controller.TEMP_JumpTime;
+                    float h = controller.TEMPJumpHeight;
+                    float t = controller.TEMPJumpTime;
 
                     float grav = (2f * h) / (t * t);
                     float vel = (2f * h) / t;

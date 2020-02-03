@@ -1,142 +1,144 @@
 ﻿using UnityEngine;
 
+#pragma warning disable CS0649
+
 namespace WraithavenGames.FirstSight
 {
     public class Footsteps : MonoBehaviour
     {
         [Header("Footstep Settings")]
-        [SerializeField] private float _walkingStride = 2.5f;
-        [SerializeField] private float _runningStride = 4.5f;
-        [SerializeField] private float _strideAdjustTime = 0.1f;
-        [SerializeField, Range(0f, 2f)] private float _minFootstepPitch = 0.75f;
-        [SerializeField, Range(0f, 2f)] private float _maxFootstepPitch = 1.25f;
-        [SerializeField, Range(0f, 1f)] private float _steroBalance = 0.5f;
-        [SerializeField, Range(0f, 1f)] private float _walkingVolume = 0.25f;
-        [SerializeField, Range(0f, 1f)] private float _runningVolume = 0.5f;
+        [SerializeField] private float walkingStride = 2.5f;
+        [SerializeField] private float runningStride = 4.5f;
+        [SerializeField] private float strideAdjustTime = 0.1f;
+        [SerializeField, Range(0f, 2f)] private float minFootstepPitch = 0.75f;
+        [SerializeField, Range(0f, 2f)] private float maxFootstepPitch = 1.25f;
+        [SerializeField, Range(0f, 1f)] private float steroBalance = 0.5f;
+        [SerializeField, Range(0f, 1f)] private float walkingVolume = 0.25f;
+        [SerializeField, Range(0f, 1f)] private float runningVolume = 0.5f;
 
         [Header("Landing Settings")]
-        [SerializeField, Range(0f, 2f)] private float _minLandingPitch = 0.75f;
-        [SerializeField, Range(0f, 2f)] private float _maxLandingPitch = 1.25f;
-        [SerializeField, Range(0f, 1f)] private float _landingVolume = 1f;
+        [SerializeField, Range(0f, 2f)] private float minLandingPitch = 0.75f;
+        [SerializeField, Range(0f, 2f)] private float maxLandingPitch = 1.25f;
+        [SerializeField, Range(0f, 1f)] private float landingVolume = 1f;
 
         [Header("Jumping Settings")]
-        [SerializeField, Range(0f, 2f)] private float _minJumpingPitch = 1.25f;
-        [SerializeField, Range(0f, 2f)] private float _maxJumpingPitch = 1.75f;
-        [SerializeField, Range(0f, 1f)] private float _jumpingVolume = 0.65f;
+        [SerializeField, Range(0f, 2f)] private float minJumpingPitch = 1.25f;
+        [SerializeField, Range(0f, 2f)] private float maxJumpingPitch = 1.75f;
+        [SerializeField, Range(0f, 1f)] private float jumpingVolume = 0.65f;
 
         [Header("Audio Clips")]
-        [SerializeField] private AudioClip[] _footstepSounds;
-        [SerializeField] private AudioClip[] _landingSounds;
-        [SerializeField] private AudioClip[] _jumpingSounds;
+        [SerializeField] private AudioClip[] footstepSounds;
+        [SerializeField] private AudioClip[] landingSounds;
+        [SerializeField] private AudioClip[] jumpingSounds;
 
         [Header("Dependencies")]
-        [SerializeField] private AudioSource _audioSource;
-        [SerializeField] private PlayerController _controller;
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private PlayerController controller;
 
-        private bool _leftFootNext;
-        private Vector3 _lastPosition;
-        private float _sinceLastFootstep;
-        private bool _wasGrounded;
-        private bool _onLeftFoot;
-        private float _stride;
-        private float _lastLandingTime;
-        private float _lastJumpingTime;
+        private bool leftFootNext;
+        private Vector3 lastPosition;
+        private float sinceLastFootstep;
+        private bool wasGrounded;
+        private bool onLeftFoot;
+        private float stride;
+        private float lastLandingTime;
+        private float lastJumpingTime;
 
         private void Start()
         {
-            _stride = _walkingStride;
-            _wasGrounded = true;
-            _lastLandingTime = float.MinValue;
-            _lastJumpingTime = float.MinValue;
+            stride = walkingStride;
+            wasGrounded = true;
+            lastLandingTime = float.MinValue;
+            lastJumpingTime = float.MinValue;
         }
 
         private void Update()
         {
-            float goalStride = _controller.IsRunning ? _runningStride : _walkingStride;
-            _stride = Mathf.MoveTowards(_stride, goalStride, Time.deltaTime / _strideAdjustTime);
+            float goalStride = controller.IsRunning ? runningStride : walkingStride;
+            stride = Mathf.MoveTowards(stride, goalStride, Time.deltaTime / strideAdjustTime);
 
-            if (_controller.IsGrounded)
+            if (controller.IsGrounded)
             {
-                if (_wasGrounded)
+                if (wasGrounded)
                 {
                     Vector3 pos = transform.position;
-                    Vector3 posDelta = pos - _lastPosition;
+                    Vector3 posDelta = pos - lastPosition;
                     posDelta.y = 0f;
 
-                    _sinceLastFootstep += posDelta.magnitude;
-                    _lastPosition = pos;
+                    sinceLastFootstep += posDelta.magnitude;
+                    lastPosition = pos;
 
-                    if (_sinceLastFootstep >= _stride)
+                    if (sinceLastFootstep >= stride)
                     {
-                        _sinceLastFootstep -= _stride;
+                        sinceLastFootstep -= stride;
                         PlayFootstepSound();
                     }
                 }
                 else
                     PlayLandingSound();
-                _wasGrounded = true;
+                wasGrounded = true;
             }
-            else if (_controller.IsAboutToLand)
+            else if (controller.IsAboutToLand)
             {
-                _sinceLastFootstep = 0f;
-                _lastPosition = transform.position;
+                sinceLastFootstep = 0f;
+                lastPosition = transform.position;
 
                 PlayLandingSound();
             }
             else
             {
-                if (_wasGrounded && _controller.IsCurrentlyJumping)
+                if (wasGrounded && controller.IsCurrentlyJumping)
                     PlayJumpingSound();
 
-                _sinceLastFootstep = 0f;
-                _wasGrounded = false;
+                sinceLastFootstep = 0f;
+                wasGrounded = false;
             }
         }
 
         private void PlayFootstepSound()
         {
-            int randomIndex = Random.Range(0, _footstepSounds.Length);
-            AudioClip sound = _footstepSounds[randomIndex];
+            int randomIndex = Random.Range(0, footstepSounds.Length);
+            AudioClip sound = footstepSounds[randomIndex];
 
-            _audioSource.panStereo = _onLeftFoot ? -_steroBalance : _steroBalance;
-            _onLeftFoot = !_onLeftFoot;
+            audioSource.panStereo = onLeftFoot ? -steroBalance : steroBalance;
+            onLeftFoot = !onLeftFoot;
 
-            float volume = _controller.IsRunning ? _runningVolume : _walkingVolume;
+            float volume = controller.IsRunning ? runningVolume : walkingVolume;
 
-            _audioSource.pitch = Random.Range(_minFootstepPitch, _maxFootstepPitch);
-            _audioSource.PlayOneShot(sound, volume);
+            audioSource.pitch = Random.Range(minFootstepPitch, maxFootstepPitch);
+            audioSource.PlayOneShot(sound, volume);
         }
 
         private void PlayLandingSound()
         {
-            if (Time.time - _lastLandingTime < 0.1f)
+            if (Time.time - lastLandingTime < 0.1f)
                 return;
 
-            _lastLandingTime = Time.time;
+            lastLandingTime = Time.time;
 
-            int randomIndex = Random.Range(0, _landingSounds.Length);
-            AudioClip sound = _landingSounds[randomIndex];
+            int randomIndex = Random.Range(0, landingSounds.Length);
+            AudioClip sound = landingSounds[randomIndex];
 
-            _audioSource.panStereo = 0f;
+            audioSource.panStereo = 0f;
 
-            _audioSource.pitch = Random.Range(_minLandingPitch, _maxLandingPitch);
-            _audioSource.PlayOneShot(sound, _landingVolume);
+            audioSource.pitch = Random.Range(minLandingPitch, maxLandingPitch);
+            audioSource.PlayOneShot(sound, landingVolume);
         }
 
         private void PlayJumpingSound()
         {
-            if (Time.time - _lastJumpingTime < 0.1f)
+            if (Time.time - lastJumpingTime < 0.1f)
                 return;
 
-            _lastJumpingTime = Time.time;
+            lastJumpingTime = Time.time;
 
-            int randomIndex = Random.Range(0, _jumpingSounds.Length);
-            AudioClip sound = _jumpingSounds[randomIndex];
+            int randomIndex = Random.Range(0, jumpingSounds.Length);
+            AudioClip sound = jumpingSounds[randomIndex];
 
-            _audioSource.panStereo = 0f;
+            audioSource.panStereo = 0f;
 
-            _audioSource.pitch = Random.Range(_minJumpingPitch, _maxJumpingPitch);
-            _audioSource.PlayOneShot(sound, _jumpingVolume);
+            audioSource.pitch = Random.Range(minJumpingPitch, maxJumpingPitch);
+            audioSource.PlayOneShot(sound, jumpingVolume);
         }
     }
 }

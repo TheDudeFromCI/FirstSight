@@ -178,20 +178,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4af88c251a7f640498a69b1371eb6fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 6
-  _runSpeed: 10
-  _jumpSpeed: 5.5
-  _gravity: 13.75
-  _enableHeldJump: 1
-  _enableCoyoteTime: 1
-  _coyoteTimeWindow: 0.15
-  _continuousJumping: 1
-  _preserveMomentum: 0.5
-  _shake: {fileID: 114297745655777508}
-  _groundHitTrauma: 0.08
-  _minFallDistance: 3
-  _lightJumpTrauma: 1
-  _inputSettings: {fileID: 114225090679111052}
+  moveSpeed: 3
+  runSpeed: 7
+  jumpSpeed: 5.5
+  gravity: 13.75
+  enableHeldJump: 1
+  enableCoyoteTime: 1
+  coyoteTimeWindow: 0.15
+  continuousJumping: 1
+  preserveMomentum: 0.5
+  shake: {fileID: 114297745655777508}
+  groundHitTrauma: 0.08
+  minFallDistance: 3
+  lightJumpTrauma: 1
+  inputSettings: {fileID: 114225090679111052}
 --- !u!114 &114471294834788224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,9 +204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a04e984ee27cb4ab63cf90554301c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cam: {fileID: 4363161706940778}
-  _inputSettings: {fileID: 114225090679111052}
-  _shake: {fileID: 114297745655777508}
+  cam: {fileID: 4363161706940778}
+  inputSettings: {fileID: 114225090679111052}
+  shake: {fileID: 114297745655777508}
 --- !u!114 &114297745655777508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,11 +219,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e36cc7e484662db4c98b0f4854bee1ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shakePower: 30
-  _shakeSpeed: 20
-  _traumaSensitivity: 1
-  _traumaFalloff: 1
-  _scaledTime: 0
+  shakePower: 30
+  shakeSpeed: 20
+  traumaSensitivity: 1
+  traumaFalloff: 1
+  scaledTime: 1
 --- !u!114 &114225090679111052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,22 +236,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 576f991bd2fa57449b482486b2edbdf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveX:
-    _axis: Horizontal
-  _moveZ:
-    _axis: Vertical
-  _camX:
-    _axis: Mouse X
-    _sensitivity: 200
-  _camY:
-    _axis: Mouse Y
-    _sensitivity: 200
-  _run:
-    _type: 0
-    _value: left shift
-  _jump:
-    _type: 0
-    _value: space
+  moveX:
+    axis: Horizontal
+  moveZ:
+    axis: Vertical
+  camX:
+    axis: Mouse X
+    sensitivity: 200
+  camY:
+    axis: Mouse Y
+    sensitivity: 200
+  run:
+    type: 0
+    value: left shift
+  jump:
+    type: 0
+    value: space
 --- !u!114 &114709035222438462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 250259c346f46fe4b81be395b9a2d728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pushPower: 10
+  pushPower: 10
 --- !u!82 &82824312894098558
 AudioSource:
   m_ObjectHideFlags: 0
@@ -373,37 +373,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eef08253d33fbe40b0cdd52fc291dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _walkingStride: 2.25
-  _runningStride: 3
-  _strideAdjustTime: 0.08
-  _minFootstepPitch: 0.75
-  _maxFootstepPitch: 1.25
-  _steroBalance: 0.12
-  _walkingVolume: 0.25
-  _runningVolume: 0.5
-  _minLandingPitch: 0.75
-  _maxLandingPitch: 1.25
-  _landingVolume: 1
-  _minJumpingPitch: 1.25
-  _maxJumpingPitch: 1.75
-  _jumpingVolume: 0.65
-  _footstepSounds:
+  walkingStride: 2.25
+  runningStride: 3
+  strideAdjustTime: 0.08
+  minFootstepPitch: 0.75
+  maxFootstepPitch: 1.25
+  steroBalance: 0.12
+  walkingVolume: 0.25
+  runningVolume: 0.5
+  minLandingPitch: 0.75
+  maxLandingPitch: 1.25
+  landingVolume: 1
+  minJumpingPitch: 1.25
+  maxJumpingPitch: 1.75
+  jumpingVolume: 0.65
+  footstepSounds:
   - {fileID: 8300000, guid: 7d822c38500e4e240b57989172c89798, type: 3}
   - {fileID: 8300000, guid: e2cd6bfc997098641bba2d699330b79f, type: 3}
   - {fileID: 8300000, guid: f3ae616d971980a45948b4fb17bd6f05, type: 3}
   - {fileID: 8300000, guid: 08b50537520f1b9439c6e7afd9a39efa, type: 3}
-  _landingSounds:
+  landingSounds:
   - {fileID: 8300000, guid: 7d822c38500e4e240b57989172c89798, type: 3}
   - {fileID: 8300000, guid: e2cd6bfc997098641bba2d699330b79f, type: 3}
   - {fileID: 8300000, guid: f3ae616d971980a45948b4fb17bd6f05, type: 3}
   - {fileID: 8300000, guid: 08b50537520f1b9439c6e7afd9a39efa, type: 3}
-  _jumpingSounds:
+  jumpingSounds:
   - {fileID: 8300000, guid: 7d822c38500e4e240b57989172c89798, type: 3}
   - {fileID: 8300000, guid: e2cd6bfc997098641bba2d699330b79f, type: 3}
   - {fileID: 8300000, guid: f3ae616d971980a45948b4fb17bd6f05, type: 3}
   - {fileID: 8300000, guid: 08b50537520f1b9439c6e7afd9a39efa, type: 3}
-  _audioSource: {fileID: 82824312894098558}
-  _controller: {fileID: 114483260231353832}
+  audioSource: {fileID: 82824312894098558}
+  controller: {fileID: 114483260231353832}
 --- !u!114 &114121125567633452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,8 +416,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fd569371a52b3446824b9a66e7db35d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _restingFOV: 75
-  _runningFOV: 90
-  _fovAdjustTime: 0.15
-  _camera: {fileID: 20669006087861730}
-  _controller: {fileID: 114483260231353832}
+  restingFOV: 75
+  runningFOV: 90
+  fovAdjustTime: 0.15
+  camera: {fileID: 20669006087861730}
+  controller: {fileID: 114483260231353832}
