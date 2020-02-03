@@ -1,6 +1,14 @@
 name: CI
 
-on: [push]
+on:
+  push:
+    paths:
+      - "Assets/**"
+      - ".github/**"
+  pull_request:
+    paths:
+      - "Assets/**"
+      - ".github/**"
 
 jobs:
   build:
