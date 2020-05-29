@@ -1,0 +1,5 @@
+{
+  "displayName": "Simple FPS Scene",
+  "description": "An example scene showing off the movement mechanics of FirstSight.",
+  "createSeparatePackage": true
+}

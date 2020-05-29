@@ -1,0 +1,17 @@
+{
+    "name": "WraithavenGames.Firstsight.Editor",
+    "references": [
+        "WraithavenGames.Firstsight"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,4 +1,3 @@
 # First Sight
-First Sight is a drop-and-play first person controller script for Unity. Complete with support for camera effects, footstep sounds, basic physics, and other common features which are in high demand for many Unity projects.
 
-Importable Unity packages can be found in the Actions tab, under build artifacts.
+First Sight is a out-of-the-box first person controller script for Unity. Complete with full physics support, camera shake/fov effects, footstep support, sprinting and object pushing, it should suite as a nice foundation for most projects to build off of.

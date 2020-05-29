@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace WraithavenGames.FirstSight
+namespace WraithavenGames.FirstSight.Editor
 {
     [CustomEditor(typeof(PlayerController))]
-    public class PlayerControllerEditor : Editor
+    public class PlayerControllerEditor : UnityEditor.Editor
     {
         override public void OnInspectorGUI()
         {
