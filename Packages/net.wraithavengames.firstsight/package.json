@@ -1,7 +1,7 @@
 {
   "name": "net.wraithavengames.firstsight",
   "displayName": "FirstSight",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "unity": "2019.3",
   "description": "A first person controller module with physics and effects support.\nContains:\n- Physics friendly Movement\n- Footstep Sounds\n- Object Pushing\n- Dynamic FOV\n- Camera Shake on Impact\n- etc",
   "hideInEditor": false,
