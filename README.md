@@ -39,13 +39,13 @@ This package is distributed through [Open UPM](https://openupm.com/packages/net.
 First Sight contains many common features, ready to drop in and use, as well as a already setup prefab player which contains all common features, ready to use in seconds.
 
 Some of these features include:
-* Screen Shake
+* **Screen Shake**
   * Shake the player's camera upon taking damage for falling from large heights. The amount of shake and duration are configurable and scale with the amount of damage taken. Shaking is controlled by a smooth interpolation function, making it fully compatible with time manipulation and framerate independent.
-* Footstep Sounds
+* **Footsteps**
   * Adding subtle footstep sounds to a player can greating increase the immersion for the player by making things feel a bit more responsive and life-like. Footsteps sounds are automatically played based on the player's speed, stops while jumping, supports alternating between the left and right audio speakers, and even changes in volume depending on whether or not the player is sneaking, walking, or running.
-* Dynamic FOV
+* **Dynamic FOV**
   * Automatically increase the camera's field of view slightly when the player is running, just to really sell that "moving *really* fast" effect.
-* Physics Object
+* **Physics Object Pushing**
   * Walking into a very-movable box and having it just sit there isn't too much fun. This feature allows you to push thos pesky boxes out of your way, respecting mass and angle of impact. If it's in your way, move it. Short and sweet. :)
 
 ### API Changes
