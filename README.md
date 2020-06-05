@@ -26,7 +26,12 @@
 <br />
 <br />
 
-Thank you all for helping this project, and many others, to continue being developed.
+Thank you all for supporting me and helping this project to continue being developed.
+
+<br />
+
+<p>Want to support this project? Join my Patreon!</p>
+<a href="https://www.patreon.com/thedudefromci"><img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="150px" /></a>
 
 ---
 
