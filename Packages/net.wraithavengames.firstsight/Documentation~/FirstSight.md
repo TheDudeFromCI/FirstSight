@@ -46,4 +46,4 @@ In addition, a cross hairs UI canvas prefab prefab exists as a placeholder while
 
 | Date         | Reason                         |
 | ------------ | ------------------------------ |
-| May 28, 2019 | Initial documentation written. |
+| May 28, 2020 | Initial documentation written. |
